@@ -1,0 +1,27 @@
+#!/bin/sh
+
+PH="/opt/pub-home"
+
+echo $PH/zshrc
+
+if [ -f ~/.zshrc ]
+then
+    echo ".zshrc existiert bereits"
+else
+    ln -s $PH/zshrc ~/.zshrc
+fi
+
+if [ -f ~/.vimrc ]
+then
+    echo ".vimrc existiert bereits"
+else
+    ln -s $PH/vimrc ~/.vimrc
+fi
+
+if [ -f ~/.screenrc ]
+then
+    echo ".screenrc existiert bereits"
+else
+    ln -s $PH/screenrc ~/.screenrc
+fi
+
