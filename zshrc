@@ -2,11 +2,16 @@
 # Kuetemeier.NET GmbH - System configuration set
 # http://www.kuetemeier.net
 #
-# (c) Copyright 2009-2013 by Jörg Kütemeier - all rights are reserved
+# /home/default/.zshrc
+#
+# (c) Copyright 2009 by Jörg Kütemeier - all rights are reserved
 #
 
 # path definitions
 export PATH=/opt/jk-sys/bin:/opt/kn-sys/bin:~/bin:$PATH:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/usr/local/icinga/libexec:/opt/play:/opt/scala/bin
+
+# scripts for zsh-autocomplete
+fpath=(~/.zsh/completition $fpath)
 
 #-------------
 # zsh options
@@ -419,12 +424,11 @@ else
     export PROMPT=$'%(?..%{\e[41;38m%}%B-%?-%b%{\e[0m%} )%(1j.%{\e[01;33m%}[%j] .)%{\e[01;32m%}%n%{\e[01;33m%}@%{\e[01;36m%}%m%{\e[0m%} %{\e[01;33m%}%2~%{\e[0m%}$(prompt_git_info)%{${fg[default]}%} %B%#%b '
 fi
 
-export PATH="~/.rbenv/bin:$PATH"
-export PATH="~/.rbenv/shims:$PATH"
-eval "$(rbenv init -)"
-
-#export PATH="/Library/Frameworks/Python.framework/Versions/3.3/bin:$PATH"
-#alias python="python3.3"
+if [ -e "~/.rbenv" ]; then
+  export PATH="~/.rbenv/bin:$PATH"
+  export PATH="~/.rbenv/shims:$PATH"
+  eval "$(rbenv init -)"
+fi
 
 export PATH="/usr/local/share/npm/bin:$PATH"
 
