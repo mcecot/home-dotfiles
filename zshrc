@@ -8,7 +8,7 @@
 #
 
 # path definitions
-export PATH=/opt/jk-sys/bin:/opt/kn-sys/bin:~/bin:$PATH:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/usr/local/icinga/libexec:/opt/play:/opt/scala/bin
+export PATH=/opt/jk-sys/bin:/opt/kn-sys/bin:~/bin:$PATH:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/usr/local/icinga/libexec:/opt/play:/opt/scala/bin:/opt/java/bin
 
 # scripts for zsh-autocomplete
 fpath=(~/.zsh/completition $fpath)
@@ -164,6 +164,25 @@ else if [ -e /etc/yum.conf ] ; then
     export JAVA_HOME=/opt/java
     export SCALA_HOME=/opt/scala
 
+else if [ -e /etc/arch-release ] ; then
+
+
+    #-------------
+    # LINUX part (fedora/centos/rhel)
+
+    alias  LS='ls $LS_OPTIONS'
+
+    export LANG="de_DE.utf8"
+    export LC_COLLATE="de_DE.utf8"
+    export LC_CTYPE="de_DE.utf8"
+    export LC_MESSAGES="de_DE.utf8"
+    export LC_MONETARY="de_DE.utf8"
+    export LC_NUMERIC="de_DE.utf8"
+    export LC_TIME="de_DE.utf8"
+    export LC_ALL=
+
+    export JAVA_HOME=/opt/java
+    export SCALA_HOME=/opt/scala
 else
 
     #------------
@@ -185,7 +204,7 @@ else
     export SCALA_HOME=/opt/scala
 
 
-fi fi
+fi fi fi
 
 #---------------
 # suffix aliase
@@ -432,3 +451,7 @@ fi
 
 export PATH="/usr/local/share/npm/bin:$PATH"
 
+# color for grep
+alias grep='grep --color=auto'
+
+export AWS_CONFIG_FILE=~/aws.config
