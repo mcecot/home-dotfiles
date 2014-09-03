@@ -4,11 +4,11 @@
 #
 # /home/default/.zshrc
 #
-# (c) Copyright 2009 by Jörg Kütemeier - all rights are reserved
+# (c) Copyright 2009-2014 by Jörg Kütemeier - all rights are reserved
 #
 
 # path definitions
-export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH:/opt/local/bin:/opt/local/sbin:/usr/local/icinga/libexec:/opt/play:/opt/scala/bin:~/android/sdk/tools:~/android/sdk/platform-tools:/usr/local/share/npm/bin:~/bin/qt:~/anaconda/bin"
+export PATH="~/bin:/usr/local/bin:/usr/local/sbin:$PATH:/opt/local/bin:/opt/local/sbin:/opt/play:/opt/scala/bin:~/android/sdk/tools:~/android/sdk/platform-tools:/usr/local/share/npm/bin:~/bin/qt:~/anaconda/bin"
 
 # scripts for zsh-autocomplete
 fpath=(~/.zsh/completition $fpath)
@@ -34,6 +34,45 @@ setopt hist_no_store            # commands like history or fc are no longer stor
 setopt hist_ignore_all_dups     # no duplicated entries like ls,cd,pwd etc.
 setopt hist_ignore_space        # do not save commands with leading space in history
 
+#-----------
+# Settings {
+
+setopt complete_aliases       # Do not expand aliases before_ completion has finished
+setopt auto_pushd             # Automatically pushd directories on dirstack
+setopt auto_continue          # Automatically send SIGCON to disowned jobs
+setopt extended_glob          # So that patterns like ^() *~() ()# can be used
+setopt pushd_ignore_dups      # Do not push dups on stack
+setopt pushd_silent           # Be quiet about pushds and popds
+setopt brace_ccl              # Expand alphabetic brace expressions
+setopt complete_in_word       # Stay where it is and completion is done from both ends
+setopt correct                # Spell check for commands only
+setopt hash_list_all          # Search all paths before command completion
+setopt hist_ignore_all_dups   # When runing a command several times, only store one
+setopt hist_ignore_space      # Do not remember commands starting with space
+setopt share_history          # Share history among sessions
+setopt hist_verify            # Reload full command when runing from history
+setopt hist_expire_dups_first # Remove dups when max size reached
+setopt list_types             # Show ls -F style marks in file completion
+setopt long_list_jobs         # Show pid in bg job list
+setopt numeric_glob_sort      # When globbing numbered files, use real counting
+setopt no_hist_beep           # Don not beep on history expansion errors
+setopt hist_reduce_blanks     # Reduce whitespace in history
+setopt interactive_comments   # Comments in history
+setopt inc_append_history     # Append to history once executed
+setopt prompt_subst           # Prompt more dynamic, allow function in prompt
+
+# Report to me when other people login/logout
+watch=(notme)
+
+# Exclude '/' from WORDCHARS so <Ctrl-w> will only delete part of the path
+WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
+
+# } Settings
+#-----------
+
+
+# shell
+export SHELL=`which zsh`
 
 # search environment for editor and take the first
 export EDITOR=${$(whence -p vim vi nano)[1]}
@@ -254,7 +293,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 # allow one error for every three characters typed in approximate completer
 #zstyle -e ':completion:*:approximate:*' max-errors \
 #    'reply=( $(( ($#PREFIX+$#SUFFIX)/2 )) numeric )'
-    
+
 # insert all expansions for expand completer
 #zstyle ':completion:*:expand:*' tag-order all-expansions
 #
@@ -262,7 +301,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 # 1. All /etc/hosts hostnames are in autocomplete
 # 2. If you have a comment in /etc/hosts like #%foobar.domain,
 #    then foobar.domain will show up in autocomplete!
-#zstyle ':completion:*' hosts $(awk '/^[^#]/ {print $2 $3" "$4" "$5}' /etc/hosts | grep -v ip6- && grep "^#%" /etc/hosts | awk -F% '{print $2}') 
+#zstyle ':completion:*' hosts $(awk '/^[^#]/ {print $2 $3" "$4" "$5}' /etc/hosts | grep -v ip6- && grep "^#%" /etc/hosts | awk -F% '{print $2}')
 # formatting and messages
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format '%B%d%b'
@@ -304,7 +343,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 is_root_shell() { [[ $USER == root ]] }
 
 
-# inspired from 
+# inspired from
 # http://sebastiancelis.com/2009/11/16/zsh-prompt-git-users/
 
 function update_current_git_vars () {
@@ -360,7 +399,7 @@ if [ -n "$__CURRENT_GIT_BRANCH" ]; then
         s+="⚡"
     fi
     s+=")"
- 
+
     printf " %s%s" "%{${fg[cyan]}%}" $s
 fi
 }
