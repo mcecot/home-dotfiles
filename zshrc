@@ -374,9 +374,14 @@ if [[ -n "$st" ]]; then
         fi
     fi
 
-    if [[ ! $st =~ 'nothing to commit' ]]; then
-        __CURRENT_GIT_BRANCH_IS_DIRTY='1'
+    __CURRENT_GIT_BRANCH_IS_DIRTY='1'
+    if [[ $st =~ 'nothing to commit' ]]; then
+        __CURRENT_GIT_BRANCH_IS_DIRTY=''
     fi
+    if [[ $st =~ 'nichts einzutragen' ]]; then
+        __CURRENT_GIT_BRANCH_IS_DIRTY=''
+    fi
+    echo "-${__CURRENT_GIT_BRANCH_IS_DIRTY}-$st"
 fi
 }
 
