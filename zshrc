@@ -8,15 +8,14 @@
 #
 
 # path definitions
-export PATH=/opt/jk-sys/bin:/opt/kn-sys/bin:~/bin:$PATH:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/usr/local/icinga/libexec:/opt/play:/opt/scala/bin:/opt/java/bin
+export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH:/opt/local/bin:/opt/local/sbin:/usr/local/icinga/libexec:/opt/play:/opt/scala/bin:~/android/sdk/tools:~/android/sdk/platform-tools:/usr/local/share/npm/bin:~/bin/qt:~/anaconda/bin"
 
 # scripts for zsh-autocomplete
 fpath=(~/.zsh/completition $fpath)
 
 #-------------
 # zsh options
-setopt no_beep auto_cd complete_in_word correct rm_star_wait
-setopt correct                  # command correction
+setopt no_beep correct complete_in_word correct rm_star_wait
 
 #--------
 # history
@@ -55,9 +54,6 @@ export LS_OPTIONS='--color=auto'
 
 alias l="ls -la"
 alias v="vim"
-alias icc="/usr/local/icinga/bin/icinga -v /usr/local/icinga/etc/icinga.cfg"
-alias icr="service icinga restart"
-alias icl="service icinga reload"
 # always load vim if awailable, else use plain vi
 alias vi=${$(whence -p vim vi)[1]}
 
@@ -121,10 +117,6 @@ status() {
         print ""
   }
 
-if [ -d /usr/local/kuetemeier.net ] ; then
-    export MIBDIRS="/usr/share/snmp/mibs:/usr/local/kuetemeier.net/monitoring/snmp/mibs/dell:/usr/local/kuetemeier.net/monitoring/snmp/mibs/vmware"
-fi
-
 if [ -f /etc/debian_version ] ; then
 
     #-------------
@@ -164,25 +156,6 @@ else if [ -e /etc/yum.conf ] ; then
     export JAVA_HOME=/opt/java
     export SCALA_HOME=/opt/scala
 
-else if [ -e /etc/arch-release ] ; then
-
-
-    #-------------
-    # LINUX part (fedora/centos/rhel)
-
-    alias  LS='ls $LS_OPTIONS'
-
-    export LANG="de_DE.utf8"
-    export LC_COLLATE="de_DE.utf8"
-    export LC_CTYPE="de_DE.utf8"
-    export LC_MESSAGES="de_DE.utf8"
-    export LC_MONETARY="de_DE.utf8"
-    export LC_NUMERIC="de_DE.utf8"
-    export LC_TIME="de_DE.utf8"
-    export LC_ALL=
-
-    export JAVA_HOME=/opt/java
-    export SCALA_HOME=/opt/scala
 else
 
     #------------
@@ -204,7 +177,7 @@ else
     export SCALA_HOME=/opt/scala
 
 
-fi fi fi
+fi fi
 
 #---------------
 # suffix aliase
@@ -227,8 +200,8 @@ hash -d typo3=/var/www/typo3
 
 #setopt MENUCOMPLETE
 # Set/unset  shell options
-setopt   notify globdots correct pushdtohome cdablevars autolist
-setopt   correctall autocd recexact longlistjobs
+setopt   notify globdots correct pushdtohome autolist
+setopt   correctall recexact longlistjobs
 setopt   autoresume histignoredups pushdsilent noclobber
 setopt   autopushd pushdminus extendedglob rcquotes mailwarning
 unsetopt bgnice autoparamslash
@@ -355,8 +328,10 @@ if [[ -n "$st" ]]; then
             __CURRENT_GIT_BRANCH_STATUS='ahead'
         elif [[ $arr[2] =~ 'diverged' ]]; then
             __CURRENT_GIT_BRANCH_STATUS='diverged'
-        else
+        elif [[ $arr[2] =~ 'behind' ]]; then
             __CURRENT_GIT_BRANCH_STATUS='behind'
+        else
+            __CURRENT_GIT_BRANCH_STATUS='up-to-date'
         fi
     fi
 
@@ -449,9 +424,7 @@ if [ -e "~/.rbenv" ]; then
   eval "$(rbenv init -)"
 fi
 
-export PATH="/usr/local/share/npm/bin:$PATH"
-
-# color for grep
-alias grep='grep --color=auto'
-
 export AWS_CONFIG_FILE=~/aws.config
+
+alias subl2="'/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl'"
+alias subl="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
