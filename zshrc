@@ -381,7 +381,6 @@ if [[ -n "$st" ]]; then
     if [[ $st =~ 'nichts einzutragen' ]]; then
         __CURRENT_GIT_BRANCH_IS_DIRTY=''
     fi
-    echo "-${__CURRENT_GIT_BRANCH_IS_DIRTY}-$st"
 fi
 }
 
