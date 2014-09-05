@@ -215,6 +215,9 @@ else
     export JAVAFX_HOME=/Library/Java/Home
     export SCALA_HOME=/opt/scala
 
+    # SublimeText
+    alias subl2="'/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl'"
+    alias subl="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
 
 fi fi
 
@@ -469,5 +472,3 @@ fi
 
 export AWS_CONFIG_FILE=~/aws.config
 
-alias subl2="'/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl'"
-alias subl="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
