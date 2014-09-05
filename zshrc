@@ -229,6 +229,13 @@ alias -s pl=vim
 alias -s php=vim
 
 #---------------
+# global aliases
+
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+
+#---------------
 # named dirs
 
 hash -d log=/var/log
