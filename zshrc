@@ -465,6 +465,7 @@ chpwd_functions+='chpwd_update_git_vars'
 #---------
 
 isroot=`whoami`
+
 if [[ "$isroot" == "root" ]]; then
     export PROMPT=$'%(?..%{\e[41;38m%}%B-%?-%b%{\e[0m%} )%(1j.%{\e[01;33m%}[%j] .)%{\e[01;31m%}%n%{\e[01;33m%}@%{\e[01;36m%}%m%{\e[0m%} %{\e[01;33m%}%2~%{\e[0m%}$(prompt_git_info)%{${fg[default]}%} %B%#%b '
 else
@@ -478,4 +479,25 @@ if [ -e "~/.rbenv" ]; then
 fi
 
 export AWS_CONFIG_FILE=~/aws.config
+
+#--------
+# GIT configuration and aliases
+# http://git-scm.com/book/de/Git-Grundlagen-Tipps-und-Tricks
+# and some more...
+
+# detect git
+gitpath=`which git`
+
+# only define if git is installed
+if [[ -f "$gitpath" ]]; then
+    echo "configuring git aliases"
+
+    git config --global alias.co checkout
+    git config --global alias.cb checkout -b
+    git config --global alias.br branch
+    git config --global alias.ci commit
+    git config --global alias.st status
+
+    git config --global alias.unstage 'reset HEAD --'
+fi
 
