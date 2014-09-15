@@ -490,8 +490,6 @@ gitpath=`which git`
 
 # only define if git is installed
 if [[ -f "$gitpath" ]]; then
-    echo "configuring git aliases"
-
     git config --global alias.co checkout
     git config --global alias.cb checkout -b
     git config --global alias.br branch
