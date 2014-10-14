@@ -1,4 +1,7 @@
-pub-home
-========
+# home-dotfiles
 
-Public home directory files, e.g. .zshrc, .screenrc, .vimrc, usefull bin files
+
+## Vim / MacVim
+
+https://github.com/b4winckler/macvim/releases
+
