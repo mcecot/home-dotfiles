@@ -1,3 +1,5 @@
+# DEPRECATED - use https://github.com/jkuetemeier/jk-sys
+
 # home-dotfiles
 
 
